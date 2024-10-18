@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-size: cover; /* Ensure background images cover the screen */
+        }
+
+        /* Center the title */
+        h2 {
+            text-align: center;
+            font-size: 70px;
+            color: #ff0000;
+            text-transform: uppercase;
+        }
+
+        /* Style the task input area */
+        #task-input {
+            width: 300px;
+            height: 50px;
+            font-size: 18px;
+            padding: 10px;
+            border: 2px solid #0797f7;
+            border-radius: 8px;
+        }
+
+        /* Style the add task button */
+        #add-task {
+            margin-left: 10px;
+            padding: 15px 25px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect for add task button */
+        #add-task:hover {
+            background-color: #218838;
+        }
+
+        /* Style the unordered list */
+        ul {
+            margin-top: 20px;
+            padding-left: 20px;
+            font-size: 18px;
+            color: #ff3f3f;
+        }
+
+        /* Style each task item */
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Style the background selector */
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 2px solid #0011ff;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Focus effect for the select element */
+        select:focus {
+            border-color: #007bff;
+        }
+
+        /* Styling for the task container */
+        .tsk {
+            position: absolute;
+            top: 160px;
+            right: 700px;
+        }
+
+        /* Styling for the background container */
+        .BG {
+            position: absolute;
+            top: 100px;
+            right: 100px;
+        }
+
+        /* General container styling */
+        textarea, select, button {
+            margin-bottom: 10px;
+        }
+
+        /* Style for the "Choose a background" label */
+        .BG label {
+            color: rgb(255, 0, 0);
+        }
+    
+    </style>
+</head>
+<body>
+    <h2>Task List</h2>
+    <div class="tsk">
+        <textarea id="task-input" placeholder="Enter your task here..."></textarea>
+        <button id="add-task" onclick="addTask()">Add Task</button>
+        <ul id="task-list"></ul>    
+    </div>
+    
+    <div class="BG"> 
+        <label for="background">Choose a background:</label>
+        <select id="background" onchange="changeBG()">
+            <option value="none">None</option>
+            <option value="url(https://asset.gecdesigns.com/img/wallpapers/beautiful-fantasy-wallpaper-ultra-hd-wallpaper-4k-sr10012418-1706506236698-cover.webp)">Beautiful Fantasy Landscape</option>
+            <option value="url(https://images.hdqwalls.com/download/small-memory-evening-8k-5o-1280x1024.jpg)">Small Memory Evening</option>
+            <option value="url(https://4kwallpapers.com/images/walls/thumbs_2t/6409.jpg)">Beautiful Dark Mountain</option>
+        </select>
+    </div>
+
+    
+
+    <script>
+        // Function to change the background of the page
+        function changeBG() {
+            let bg = document.getElementById("background").value;
+            if (bg === 'none') {
+                document.body.style.backgroundImage = 'none';
+            } else {
+                document.body.style.backgroundImage = bg;
+            }
+        }
+
+        // Function to add a new task to the task list
+        function addTask() {
+            const taskInput = document.getElementById('task-input');
+            const taskList = document.getElementById('task-list');
+            const date = new Date().toLocaleString();
+            const taskText = taskInput.value.trim();
+            
+            if (taskText !== "") {
+                const li = document.createElement('li');
+                li.textContent = `${taskText} : ${date}`;
+                taskList.appendChild(li);
+                taskInput.value = '';  // Clear the text area after adding the task
+            } else {
+                alert('Please enter a task!');
+            }
+        }
+    </script>
+
+</body>
+</html>
